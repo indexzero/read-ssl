@@ -1,6 +1,6 @@
 {
   "name": "read-ssl",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Reads SSL certificate files from a simple internal data structure",
   "main": "index.js",
   "dependencies": {
