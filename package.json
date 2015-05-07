@@ -1,0 +1,26 @@
+{
+  "name": "read-ssl",
+  "version": "0.0.0",
+  "description": "Reads SSL certificate files from a simple internal data structure",
+  "main": "index.js",
+  "dependencies": {
+    "tape": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indexzero/read-ssl.git"
+  },
+  "keywords": [
+    "ssl"
+  ],
+  "author": "Charlie Robbins <charlie.robbins@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indexzero/read-ssl/issues"
+  },
+  "homepage": "https://github.com/indexzero/read-ssl"
+}
