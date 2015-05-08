@@ -10,6 +10,23 @@ var path = require('path'),
     test = require('tape'),
     readSsl = require('./');
 
+test('key, cert (no ca)', function (t) {
+  t.plan(5);
+
+  readSsl({
+    root: __dirname,
+    key: 'index.js',
+    cert: 'LICENSE'
+  }, function (err, files) {
+    console.dir(err);
+    t.error(err);
+    t.equals(typeof files, 'object');
+    t.ok(Buffer.isBuffer(files.key), 'has a Buffer `key`');
+    t.ok(Buffer.isBuffer(files.cert), 'has a Buffer `cert`');
+    t.equals(typeof files.ca, 'undefined', 'no `ca` returned');
+  });
+});
+
 test('key, cert, ca (single)', function (t) {
   t.plan(5);
 
