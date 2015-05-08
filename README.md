@@ -26,5 +26,23 @@ readSsl({
 });
 ```
 
+`readSsl` can also be used to create the `crypto` context necessary for performing operations like responding appropriately to an `SNICallback`:
+
+``` js
+var readSsl = require('read-ssl');
+
+readSsl.createContext({
+  root: __dirname,
+  key: 'relative/path/to/file.key',
+  cert: 'relative/path/to/file.cert'
+}, function (err, context) {
+  //
+  // Context is the result of
+  // require('crypto').createCredentials().context
+  // with the result of a `readSsl` call.
+  //
+});
+```
+
 ##### AUTHOR: [Charlie Robbins](https://github.com/indexzero)
 ##### LICENSE: MIT
