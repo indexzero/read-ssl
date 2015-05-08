@@ -36,6 +36,8 @@ module.exports = function (options, callback) {
 
   var sources = ['cert', 'key', 'ca']
     .reduce(function (acc, key) {
+      if (!options[key]) { return acc; }
+
       var list = !Array.isArray(options[key])
         ? [options[key]]
         : options[key];
