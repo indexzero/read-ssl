@@ -1,6 +1,7 @@
 'use strict';
 
-var fs = require('fs'),
+var crypto = require('crypto'),
+    fs = require('fs'),
     path = require('path');
 
 /*
@@ -13,7 +14,7 @@ var fs = require('fs'),
  * options.key
  * options.ca
  */
-module.exports = function (options, callback) {
+var readSsl = module.exports = function (options, callback) {
   var read = {};
 
   function readCertFile(key, file, next) {
@@ -60,4 +61,24 @@ module.exports = function (options, callback) {
     var source = sources.shift();
     readCertFile(source.key, source.file, readUntilEmpty);
   })();
+};
+
+/*
+ * function createContext (options, callback)
+ * Reads the files in the specified `options` and reponds
+ * with a fully-formed `crypto` context from those buffers.
+ */
+readSsl.createContext = function (options, callback) {
+  readSsl(options, function (err, buffers) {
+    if (err) { return callback(err); }
+
+    var context;
+    try {
+      context = crypto.createCredentials(buffers).context;
+    } catch (ex) {
+      return callback(ex);
+    }
+
+    callback(null, context);
+  });
 };

@@ -10,7 +10,7 @@ var path = require('path'),
     test = require('tape'),
     readSsl = require('./');
 
-test('key, cert (no ca)', function (t) {
+test('readSsl key, cert (no ca)', function (t) {
   t.plan(5);
 
   readSsl({
@@ -27,7 +27,7 @@ test('key, cert (no ca)', function (t) {
   });
 });
 
-test('key, cert, ca (single)', function (t) {
+test('readSsl key, cert, ca (single)', function (t) {
   t.plan(5);
 
   readSsl({
@@ -45,7 +45,7 @@ test('key, cert, ca (single)', function (t) {
   });
 });
 
-test('key, cert, ca (array)', function (t) {
+test('readSsl key, cert, ca (array)', function (t) {
   t.plan(7);
 
   readSsl({
@@ -63,5 +63,19 @@ test('key, cert, ca (array)', function (t) {
     files.ca.forEach(function (ca, i) {
       t.ok(Buffer.isBuffer(ca), 'has a Buffer `ca` ' + i);
     });
+  });
+});
+
+test('readSsl.createContext key, cert (no ca)', function (t) {
+  t.plan(2);
+
+  readSsl.createContext({
+    root: path.join(__dirname, 'fixtures'),
+    key: 'server.key',
+    cert: 'server.crt'
+  }, function (err, context) {
+    console.dir(err);
+    t.error(err);
+    t.ok(!!context);
   });
 });
