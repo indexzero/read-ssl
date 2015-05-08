@@ -3,10 +3,9 @@
   "version": "1.0.1",
   "description": "Reads SSL certificate files from a simple internal data structure",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
     "tape": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "node test.js"
   },
