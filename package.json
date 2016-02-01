@@ -21,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/indexzero/read-ssl/issues"
   },
-  "engines" : {
-    "node" : ">=0.12"
-  },
   "homepage": "https://github.com/indexzero/read-ssl"
 }

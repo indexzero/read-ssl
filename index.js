@@ -1,6 +1,7 @@
 'use strict';
 
 var tls = require('tls'),
+    crypto = require('crypto'),
     fs = require('fs'),
     path = require('path');
 
@@ -74,7 +75,9 @@ readSsl.createContext = function (options, callback) {
 
     var context;
     try {
-      context = tls.createSecureContext(buffers).context;
+      context = tls.createSecureContext
+        ? tls.createSecureContext(buffers).context
+        : crypto.createCredentials(buffers).context;
     } catch (ex) {
       return callback(ex);
     }
